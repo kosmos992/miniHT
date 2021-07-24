@@ -129,6 +129,22 @@
         .comment{
             
         }
+
+        .txt{
+            width: 100%;
+            height: 100%;
+        }
+
+        .txtarea{
+            height: 80px;
+            width: 80%;
+        }
+
+        .btn {
+            height: 100%;
+            background-color: #35558a;
+        }
+
     </style>
 </head>
 <body>
@@ -225,13 +241,15 @@
             </div>
             <div>
                 <div class="actdiv">한줄평</div>
-                <div><form action="{% url 'comment' movie.id %}" method = 'POST'>
+                <div class="txtarea">
+                    <form action="{% url 'comment' movie.id %}" method = 'POST' class="txtarea">
                     {% csrf_token %}
-                    <textarea name="body" id="" cols="30" rows="10"></textarea>
-                    <input type="submit">
-                </form>
+                    <textarea name="body" class="txt"></textarea>
+                    <button type="submit" class="btn">입력</button>
+                    </form>
                 </div>
-                <div>{% for each_comment in comment %}
+                <div>
+                    {% for each_comment in comment %}
                     {{each_comment.body}}
                     작성자: {{each_comment.user.username}}
                     {% endfor %}
