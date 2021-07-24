@@ -17,6 +17,13 @@ def home(request):
     paginated_movies = paginator.get_page(page)
     return render(request, 'home.html', {'movies': paginated_movies})
 
+def detail(request, id):
+  movie = get_object_or_404(Movie, pk = id)
+  comment = Comment.objects.filter(movie=movie)
+  staff = Staff.objects.filter(movie=movie)
+
+  return render(request, 'detail.html', {'movie':movie, 'comment':comment, 'staff': staff})
+
 def init_db(request):
     url = "http://3.36.240.145:3479/mutsa"
     res = requests.get(url)
