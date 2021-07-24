@@ -12,7 +12,7 @@ def init_db(request):
     url = "http://3.36.240.145:3479/mutsa"
     res = requests.get(url)
     movies = res.json()['movies']
-    print(movies)
+   
     for movie in movies:
         mv = Movie()
         staff = Staff()
