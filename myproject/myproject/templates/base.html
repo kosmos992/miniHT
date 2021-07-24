@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    #navbar {background-color: azure; height: 80px;}
+    #navbar ul li {list-style: none; color: white; float: left; line-height: 30px; vertical-align: middle; text-align: center;}
+    #navbar .nav {text-decoration: none; color:black; display: block; width: 150px;}
+    #search {position: absolute; right: 15%; padding: 20px;}
+</style>
+</head>
+<body>
+    <nav id ='navbar'>
+           <ul>
+           <li><a class="nav" href="{% url 'home' %}"> HOME </a></li>
+           <li><a class="nav" href="{% url 'signup' %}"> 회원가입 </a>
+           {% if user.is_authenticated %}
+           <li><a class="nav" href=""> 로그아웃 </a></li>
+           {% else %}
+           <li><a class="nav" href="{% url 'login' %}"> 로그인 </a></li>
+           {% endif %}
+        </ul>
+        <form id="search" action="{% url 'home' %}">
+            SEARCH <input type="text" name="query">
+          </form>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

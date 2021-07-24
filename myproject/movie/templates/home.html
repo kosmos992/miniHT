@@ -1,12 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+    {% block content %}
+      
+    <header>
+        <style>
+            #title {text-align: center;}
+            #poster {float: left; padding: 50px; margin:0 auto; }
+            .paginator {background-color: beige; width: 300px;}
+
+        </style>
+    </header>
+      <body>
+        <h1 id="title">MOVIE</h1>
+    {% for movie in movies %}
+        <div id="poster">
+        <img src = "{{movie.poster_url}}" width="150px">
+        <br>
+        {{movie.title_kor}}
+        </div>
+    {% endfor %}
     
-</body>
-</html>
+    
+    <div>
+        {% if movies.has_previous %}
+        <a href="?page=1">처음</a>
+        <a href="?page={{movies.previous_page_number}}">이전</a>
+        {% endif %}
+        
+        <span>{{movies.number}}</span>
+        <span>of</span>
+        <span>{{movies.paginator.num_pages}}</span>
+        {% if movies.has_next %}
+        <a href="?page={{movies.next_page_number}}">다음</a>
+        <a href="?page={{movies.paginator.num_pages}}">마지막</a>
+        {% endif %}
+      </div>
+    </body>
+      
+    {% endblock %}

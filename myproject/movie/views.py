@@ -5,14 +5,15 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import auth
 from .forms import SignupForm
 import requests
+from django.core.paginator import Paginator
 
 def home(request):
-    return render(request, 'home.html')
-
-def index(request):
     movies = Movie.objects.all()
-    staff = Staff.objects.all()
-    return render(request, 'index.html', {'movies': movies, 'staff': staff})
+#    staff = Staff.objects.all()
+    paginator = Paginator(movies, 3) # blogs를 3개씩 쪼갠다
+    page = request.GET.get('page') # 해당 정보가 오지 않아도 넘어간다
+    paginated_movies = paginator.get_page(page)
+    return render(request, 'home.html', {'movies': paginated_movies})
 
 def init_db(request):
     url = "http://3.36.240.145:3479/mutsa"
