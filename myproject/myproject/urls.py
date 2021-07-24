@@ -19,6 +19,11 @@ from movie.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
-    path('init_db/', init_db, name='init_db')
+    path('', home, name ='home'),
+    path('index/', index, name='index'),
+    path('init_db/', init_db, name='init_db'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout, name='logout'),
+    path('signup/', signup_view, name='signup'),
+    path('comment/<str:id>/', comment, name='comment')
 ]
