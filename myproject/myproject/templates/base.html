@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    #navbar {background-color: azure; height: 80px;}
+    #navbar ul li {list-style: none; color: white; float: left; line-height: 30px; vertical-align: middle; text-align: center;}
+    #navbar .nav {text-decoration: none; color:white; display: block; width: 150px;}
+</style>
+</head>
+<body>
+    <nav id ='navbar'>
+           <ul>
+           <li><a class="nav" href=""> HOME </a></li>
+           <li><a class="nav" href=""> 회원가입 </a>
+           {% if user.is_authenticated %}
+           <li><a class="nav" href=""> 로그인 </a></li>
+           {% else %}
+           <li><a class="nav" href=""> 로그아웃 </a></li>
+           {% endif %}
+        </ul>
+           <a href=""> 제목검색 </a>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
