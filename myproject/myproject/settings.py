@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import os
 SECRET_KEY = config('SECRET_KEY')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -126,3 +127,13 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'movie.CustomUser'
+
+
+STATICFILES_DIRS = [
+	os.path.join(BASE_DIR, 'movie', 'static') # BASE_DIR/blog/static
+	# os.path.join(BASE_DIR, '앱이름', 'static')
+]
+
+# static django에서는 편의를 위해 흩어져있는 static파일을 한곳에 모으는데, 
+# 그때 파일을 모아줄 위치를 나타냅니다.
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # BASE_DIR/static
