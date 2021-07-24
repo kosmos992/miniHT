@@ -7,6 +7,8 @@ from .forms import SignupForm
 import requests
 from django.core.paginator import Paginator
 
+
+
 def home(request):
     movies = Movie.objects.all()
 #    staff = Staff.objects.all()
@@ -15,6 +17,13 @@ def home(request):
     paginated_movies = paginator.get_page(page)
     return render(request, 'home.html', {'movies': paginated_movies})
 
+def detail(request, id):
+  movie = get_object_or_404(Movie, pk = id)
+  comment = Comment.objects.filter(movie=movie)
+  staff = Staff.objects.filter(movie=movie)
+
+  return render(request, 'detail.html', {'movie':movie, 'comment':comment, 'staff': staff})
+
 def init_db(request):
     url = "http://3.36.240.145:3479/mutsa"
     res = requests.get(url)
@@ -22,7 +31,6 @@ def init_db(request):
 
     for movie in movies:
         mv = Movie()
-        staff = Staff()
         mv.title_kor = movie['title_kor']
         mv.title_eng = movie['title_eng']
         mv.poster_url = movie['poster_url']
@@ -36,6 +44,7 @@ def init_db(request):
         mv.summary = movie['summary']
         mv.save()
         for s in movie['staff']:
+            staff = Staff()
             staff.name = s['name']
             staff.role = s['role']
             staff.image_url = s['image_url']
