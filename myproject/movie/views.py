@@ -7,6 +7,8 @@ from .forms import SignupForm
 import requests
 from django.core.paginator import Paginator
 
+
+
 def home(request):
     movies = Movie.objects.all()
 #    staff = Staff.objects.all()
@@ -22,7 +24,6 @@ def init_db(request):
 
     for movie in movies:
         mv = Movie()
-        staff = Staff()
         mv.title_kor = movie['title_kor']
         mv.title_eng = movie['title_eng']
         mv.poster_url = movie['poster_url']
@@ -36,13 +37,14 @@ def init_db(request):
         mv.summary = movie['summary']
         mv.save()
         for s in movie['staff']:
+            staff = Staff()
             staff.name = s['name']
             staff.role = s['role']
             staff.image_url = s['image_url']
             staff.movie = mv
-        staff.save()
+            staff.save()
 
-    return redirect('index')
+    return redirect('home')
 
 def login_view(request):
   if request.method == 'POST':
