@@ -33,6 +33,5 @@ def init_db(request):
             staff.image_url = s['image_url']
             staff.movie = mv
         staff.save()
-        print(staff)
 
     return redirect('index')
