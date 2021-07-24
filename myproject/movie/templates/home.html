@@ -33,7 +33,7 @@
         
         {% for movie in movies %}
         <div id="poster">
-        <img src = "{{movie.poster_url}}" width="230px">
+        <a href = "{% url 'detail' movie.id %}"> <img src = "{{movie.poster_url}}" width="230px"> </a>
         <br> <br>
         <p id="movieinfo">
         {{movie.release_date}}
