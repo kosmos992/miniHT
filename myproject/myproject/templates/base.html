@@ -5,7 +5,9 @@
     #navbar {background-color: azure; height: 80px;}
     #navbar ul li {list-style: none; color: white; float: left; line-height: 30px; vertical-align: middle; text-align: center;}
     #navbar .nav {text-decoration: none; color:black; display: block; width: 150px;}
-    #search {position: absolute; right: 15%; padding: 20px;}
+    #search {position: absolute; right: 15%; padding: 20px; height: 50px;}
+    {% block css_content %} 
+    {% endblock %}
 </style>
 </head>
 <body>
@@ -19,10 +21,11 @@
            <li><a class="nav" href="{% url 'login' %}"> 로그인 </a></li>
            {% endif %}
         </ul>
-        <form id="search" action="{% url 'home' %}">
-            SEARCH <input type="text" name="query">
-          </form>
     </nav>
+
+    <form id="search" action="{% url 'home' %}">
+        SEARCH <input type="text" name="query">
+      </form> <br><br>
     {% block content %}
     {% endblock %}
 </body>

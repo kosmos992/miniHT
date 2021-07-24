@@ -1,39 +1,58 @@
 {% extends 'base.html' %}
-    {% block content %}
-      
-    <header>
-        <style>
-            #title {text-align: center;}
-            #poster {float: left; padding: 50px; margin:0 auto; }
-            .paginator {background-color: beige; width: 300px;}
+<style>
+    {% block css_content %}
+    /* h1 {color: red;} */
+    #title {text-align: center; background-color:turquoise;}
+    #poster {float: left; padding: 30px; text-align: center; }
+    #paginator { display:block; margin: 0px auto; text-align: center;}
+    #contents {display:flex;justify-content:center;}
+    #movieinfo {font-size: 16px; font-weight: bold; width: 220px;}
+    .page {
+        display: inline-block;
+        padding: 0.7em 1em;
+        border-radius: 12px;
+        color: #35558A;
+        font-weight: bold;  
+        letter-spacing: 2px;
+        text-decoration: none;
+        background-position: 1% 50%;
+        background-size: 400% 300%;
+        border: 1px solid #35558A;}
 
-        </style>
-    </header>
-      <body>
+    .page:hover {}
+    {% endblock %}
+</style>
+
+
+    {% block content %}
         <h1 id="title">MOVIE</h1>
-    {% for movie in movies %}
+        <div id="contents">
+        
+        {% for movie in movies %}
         <div id="poster">
-        <img src = "{{movie.poster_url}}" width="150px">
+        <img src = "{{movie.poster_url}}" width="200px">
+        <br> <br>
+        <p id="movieinfo">
+        {{movie.release_date}}
         <br>
         {{movie.title_kor}}
         </div>
-    {% endfor %}
+        </p>
+        {% endfor %}
+        </div>
     
-    
-    <div>
+        <div id="paginator">
         {% if movies.has_previous %}
-        <a href="?page=1">처음</a>
-        <a href="?page={{movies.previous_page_number}}">이전</a>
+        <a class="page" href="?page=1">처음</a>
+        <a class="page" href="?page={{movies.previous_page_number}}">이전</a>
         {% endif %}
         
-        <span>{{movies.number}}</span>
+        <!-- <span>{{movies.number}}</span>
         <span>of</span>
-        <span>{{movies.paginator.num_pages}}</span>
+        <span>{{movies.paginator.num_pages}}</span> -->
         {% if movies.has_next %}
-        <a href="?page={{movies.next_page_number}}">다음</a>
-        <a href="?page={{movies.paginator.num_pages}}">마지막</a>
+        <a class="page" href="?page={{movies.next_page_number}}">다음</a>
+        <a class="page" href="?page={{movies.paginator.num_pages}}">마지막</a>
         {% endif %}
-      </div>
-    </body>
-      
+        </div>
     {% endblock %}

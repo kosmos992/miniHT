@@ -10,7 +10,7 @@ from django.core.paginator import Paginator
 def home(request):
     movies = Movie.objects.all()
 #    staff = Staff.objects.all()
-    paginator = Paginator(movies, 3) # blogs를 3개씩 쪼갠다
+    paginator = Paginator(movies, 5) # blogs를 3개씩 쪼갠다
     page = request.GET.get('page') # 해당 정보가 오지 않아도 넘어간다
     paginated_movies = paginator.get_page(page)
     return render(request, 'home.html', {'movies': paginated_movies})
@@ -40,9 +40,9 @@ def init_db(request):
             staff.role = s['role']
             staff.image_url = s['image_url']
             staff.movie = mv
-        staff.save()
+            staff.save()
 
-    return redirect('index')
+    return redirect('home')
 
 def login_view(request):
   if request.method == 'POST':
