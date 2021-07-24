@@ -99,5 +99,7 @@ def comment(request, id):
     comment.movie = movie
     if request.user.is_authenticated:
         comment.user = request.user
+    else: 
+      return redirect('login')
     comment.save()
-    return redirect('home')
+    return redirect('detail',id)
