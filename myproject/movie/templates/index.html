@@ -10,5 +10,8 @@
     {% for movie in movies %}
         {{movie.title_kor}}
     {% endfor %}
+    {% for s in staff %}
+     {{s.movie.title_kor}}
+    {% endfor %}
 </body>
 </html>

@@ -5,7 +5,8 @@ import requests
 
 def index(request):
     movies = Movie.objects.all()
-    return render(request, 'index.html', {'movies': movies})
+    staff = Staff.objects.all()
+    return render(request, 'index.html', {'movies': movies, 'staff': staff})
 
 def init_db(request):
     url = "http://3.36.240.145:3479/mutsa"
