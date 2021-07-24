@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
+<link rel="stylesheet" href="d_style.css">
 <style>
     {% block css_content %}
     /* h1 {color: red;} */
-    #title {text-align: center; background-color:turquoise;}
-    #poster {float: left; padding: 30px; text-align: center; }
+    body{
+    font-family: 나눔스퀘어, 나눔바른고딕;}
+    #poster {float: left; padding: 35px; text-align: center; margin-top: 80px; }
     #paginator { display:block; margin: 0px auto; text-align: center;}
-    #contents {display:flex;justify-content:center;}
-    #movieinfo {font-size: 16px; font-weight: bold; width: 220px;}
+    #contents {display:flex; justify-content:center;}
+    #movieinfo, #movie_title {width: 220px;}
+    #movieinfo {font-size: 18px; }
+    #movie_title {font-weight: bold; font-size: 20px; }
     .page {
         display: inline-block;
         padding: 0.7em 1em;
@@ -19,22 +23,25 @@
         background-size: 400% 300%;
         border: 1px solid #35558A;}
 
-    .page:hover {}
+    .page:hover {color: white; background-color:#35558A;}
     {% endblock %}
 </style>
 
 
     {% block content %}
-        <h1 id="title">MOVIE</h1>
         <div id="contents">
         
         {% for movie in movies %}
         <div id="poster">
-        <img src = "{{movie.poster_url}}" width="200px">
+        <img src = "{{movie.poster_url}}" width="230px">
         <br> <br>
         <p id="movieinfo">
         {{movie.release_date}}
         <br>
+        {{movie.genre}}
+        <br>
+        </p>
+        <p id="movie_title">
         {{movie.title_kor}}
         </div>
         </p>
