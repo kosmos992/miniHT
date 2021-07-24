@@ -188,6 +188,11 @@
                     {{each_comment.body}}
                     작성자: {{each_comment.user.username}}
                     {% endfor %}
+                    {% for each_staff in staff %}
+                    이름: {{each_staff.name}}
+                    역할: {{each_staff.role}}
+                    <img src = "{{each_staff.image_url}}" width="50px">
+                    {% endfor %}
                 </div>
             </div>
 

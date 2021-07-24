@@ -7,6 +7,8 @@ from .forms import SignupForm
 import requests
 from django.core.paginator import Paginator
 
+
+
 def home(request):
     movies = Movie.objects.all()
 #    staff = Staff.objects.all()
@@ -18,8 +20,9 @@ def home(request):
 def detail(request, id):
   movie = get_object_or_404(Movie, pk = id)
   comment = Comment.objects.filter(movie=movie)
+  staff = Staff.objects.filter(movie=movie)
 
-  return render(request, 'detail.html', {'movie':movie, 'comment':comment})
+  return render(request, 'detail.html', {'movie':movie, 'comment':comment, 'staff': staff})
 
 def init_db(request):
     url = "http://3.36.240.145:3479/mutsa"
