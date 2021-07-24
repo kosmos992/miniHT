@@ -11,12 +11,12 @@
 <body>
     <nav id ='navbar'>
            <ul>
-           <li><a class="nav" href=""> HOME </a></li>
-           <li><a class="nav" href=""> 회원가입 </a>
+           <li><a class="nav" href="{% url 'home' %}"> HOME </a></li>
+           <li><a class="nav" href="{% url 'signup' %}"> 회원가입 </a>
            {% if user.is_authenticated %}
-           <li><a class="nav" href=""> 로그인 </a></li>
-           {% else %}
            <li><a class="nav" href=""> 로그아웃 </a></li>
+           {% else %}
+           <li><a class="nav" href="{% url 'login' %}"> 로그인 </a></li>
            {% endif %}
         </ul>
         <form id="search" action="{% url 'home' %}">

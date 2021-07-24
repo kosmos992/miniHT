@@ -3,8 +3,11 @@ from django.urls import path
 from movie.views import * 
 
 urlpatterns = [
-	path('admin/', admin.site.urls),
-	path('', home, name="home"),
+    path('admin/', admin.site.urls),
+    path('', home, name ='home'),
     path('init_db/', init_db, name='init_db'),
-    path('index/', index, name='index')
+    path('login/', login_view, name='login'),
+    path('logout/', logout, name='logout'),
+    path('signup/', signup_view, name='signup'),
+    path('comment/<str:id>/', comment, name='comment')
 ]
