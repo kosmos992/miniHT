@@ -24,7 +24,7 @@
         }
 
         .main {
-            grid-template-rows: 0.5fr 3fr 2fr 2fr;
+            grid-template-rows: 0.35fr 3fr 2fr 2fr;
             height: 100%;
         }
 
@@ -181,18 +181,19 @@
             height: 40px;
             width: 80px; 
             line-height:40px; 
-            border:1px #3399dd solid;; 
-            background-color:#66aaff; 
+            border:1px #6A8CC3 solid;; 
+            background-color:#6A8CC3;
             text-align:center; 
             cursor: pointer; 
             color:#fff; 
             transition: all 0.9s, 
             color 0.3; 
         } 
-        
+
         .btn:hover{
             color:#fff;
-            box-shadow:80px 0 0 0 rgba(0,0,0,0.5) inset; 
+            border: 1px #35558A solid;
+            background-color: #35558A;
 
         }
 
@@ -242,7 +243,7 @@
             <div class="details">
                 <div class="poster">
                     <!-- poster img here -->
-                    <img src = "{{movie.poster_url}}" width="300px" class="photo">
+                    <img src = "{{movie.poster_url}}" width="400px" class="photo">
                 </div>
                 <div class="etc">
                     <div class="info">
