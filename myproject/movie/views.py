@@ -11,6 +11,7 @@ from django.core.paginator import Paginator
 
 def home(request):
     movies = Movie.objects.all()
+
     query = request.GET.get('query')
     option = request.GET.get('option')
     if query:

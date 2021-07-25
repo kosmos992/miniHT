@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
-
 <style>
     {% block css_content %}
     /* h1 {color: red;} */
-    body{
-    font-family: 나눔스퀘어, 나눔바른고딕;}
+   
     #poster {float: left; padding: 35px; text-align: center; margin-top: 80px; }
     #paginator { display:block; margin: 0px auto; text-align: center;}
     #contents {display:flex; justify-content:center;}
     #movieinfo, #movie_title {width: 220px;}
     #movieinfo {font-size: 18px; }
+    #info {text-decoration: none; color: black;}
     #movie_title {font-weight: bold; font-size: 20px; }
     .page {
         display: inline-block;
@@ -24,13 +23,83 @@
         border: 1px solid #35558A;}
 
     .page:hover {color: white; background-color:#35558A;}
+
+    #searchdiv button {display: inline-block;
+        padding: 0.7em 1em;
+        border-radius: 6px;
+        color: white;
+        background-color: #35558A;
+        font-weight: bold;  
+        letter-spacing: 2px;
+        text-decoration: none;
+        background-position: 1% 50%;
+        background-size: 400% 300%;
+        
+        border: 1px solid #35558A;}
+
+    #search {padding: 10px; font-weight: bold; justify-items: center; font-size: 21px;}
+    #searchbox {width: 200px; height: 32px;}
+    #searchdiv {position: absolute; left: 1320px; margin-bottom: 100px; font-weight: bold; font-size: 18px;}
+
+    .dropbtn {
+  background-color: #35558A;
+  color: white;
+  font-weight: bold;
+  padding: 0.92em 1em;
+  border-radius: 6px;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  font-family: 나눔스퀘어, 나눔바른고딕;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  display: inline-block;
+  position: absolute; left: 1600px; top:277px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #6A8CC3;
+}
+
     {% endblock %}
 </style>
 
 
     {% block content %}
+    <div class="dropdown">
+        <button class="dropbtn"> 정 렬  ▼ </button>
+        <div class="dropdown-content">
+        <a href="?option=rating_cri">평론가 평점순</a>
+        <a href="?option=rating_net">네티즌 평점순</a>
+        <a href="?option=rating_aud">관람객 평점순</a>
+        </div>
+    </div>
+
     <div id = "searchdiv">
-        <form id="search" action="{% url 'home' %}">
             SEARCH <br> <input id="searchbox" type="text" name="query">
             <button type="submit"> 검색 </button>
           </form> <br><br> 
@@ -39,7 +108,7 @@
         
         {% for movie in movies %}
         <div id="poster">
-        <a href = "{% url 'detail' movie.id %}"> <img src = "{{movie.poster_url}}" width="230px"> </a>
+        <a id="info" href = "{% url 'detail' movie.id %}"> <img src = "{{movie.poster_url}}" width="230px">
         <br> <br>
         <p id="movieinfo">
         {{movie.release_date}}
@@ -49,7 +118,9 @@
         </p>
         <p id="movie_title">
         {{movie.title_kor}}
-        </div>
+        </a>    
+    </div>
+        
         </p>
         {% endfor %}
         </div>
