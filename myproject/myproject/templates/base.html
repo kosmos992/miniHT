@@ -7,7 +7,7 @@
     #navbar .nav {text-decoration: none; color:black; display: block; width: 150px; font-size: 20px; margin-left: 20px; font-weight: bold;}
     #search {padding: 10px; font-weight: bold; justify-items: center; font-size: 21px;}
     #searchbox {width: 200px; height: 32px;}
-    #searchdiv {position: absolute; left: 1300px; margin-bottom: 100px;}
+    #searchdiv {position: absolute; left: 1400px; margin-bottom: 100px;}
     #searchdiv #search button { display: inline-block;
         padding: 0.7em 1em;
         border-radius: 4px;
@@ -40,12 +40,6 @@
     </nav>
     
 
-    <div id = "searchdiv">
-    <form id="search" action="{% url 'home' %}">
-        SEARCH <br> <input id="searchbox" type="text" name="query">
-        <button type="submit"> 검색 </button>
-      </form> <br><br> 
-    </div>
     {% block content %}
     {% endblock %}
 </body>
