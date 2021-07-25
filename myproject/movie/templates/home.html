@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-<link rel="stylesheet" href="d_style.css">
+
 <style>
     {% block css_content %}
     /* h1 {color: red;} */
@@ -29,6 +29,12 @@
 
 
     {% block content %}
+    <div id = "searchdiv">
+        <form id="search" action="{% url 'home' %}">
+            SEARCH <br> <input id="searchbox" type="text" name="query">
+            <button type="submit"> 검색 </button>
+          </form> <br><br> 
+        </div>
         <div id="contents">
         
         {% for movie in movies %}

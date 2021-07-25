@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Document</title>
+{% extends 'base.html' %}
     <style>
+        {% block css_content %}
         body{
             font-family: 나눔스퀘어, 나눔바른고딕;
         }
@@ -152,14 +146,18 @@
             width: 10%;
             background-color: #35558a;
         }
+<<<<<<< HEAD
 
         .area{
             display: flex;
         }
 
+=======
+        {% endblock %}
+>>>>>>> f1daf6c55abd14e440a8339bf74efd20a0edf6f1
     </style>
 </head>
-<body>
+{% block content %}
     <div class="wrapper">
         <div>
             <!-- empty left space -->
@@ -253,6 +251,9 @@
             </div>
             <div>
                 <div class="actdiv">한줄평</div>
+                {% load static %}
+                <img src = "{% static 'star.png' %}" alt = "">
+                
                 <div class="txtarea">
                     <form action="{% url 'comment' movie.id %}" method = 'POST' class="txtarea2">
                     {% csrf_token %}
@@ -263,6 +264,7 @@
                     </form>
                 </div>
                 <div>
+
                     {% for each_comment in comment %}
                     {{each_comment.body}}
                     작성자: {{each_comment.user.username}}
@@ -280,5 +282,4 @@
 
 
     </div>
-</body>
-</html>
+    {% endblock %}
