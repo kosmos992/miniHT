@@ -86,6 +86,10 @@
 
         }
 
+        .act{
+            min-height: 300px;
+        }
+
         .actdiv {
             margin-top: 0px;
             margin-bottom: 16px;
@@ -120,41 +124,81 @@
             margin-top: 3px;
         }
 
+        .comments{
+            display: flex;
+            width: 100%;
+
+        }
+
         .comment{
-            
+            width: 100%;
+            min-height: 50px;
+            max-width: 1000px;
+        }
+
+        .content{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .writer{
+            width: 100%;
+            margin-bottom: 10px;
         }
 
         .txt{
-            width: 100%;
-            height: 100%;
+            width: 85%;
             margin: 0px;
             padding: 0px;
-            border: 0px;
+
         }
 
         .txtarea{
             height: 40px;
-            width: 80%;
+            width: 100%;
+            margin-bottom: 16px;
         }
         .txtarea2{
             height: 40px;
             width: 100%;
         }
+        .btn { 
+            display:block; 
+            height: 40px;
+            width: 80px; 
+            line-height:40px; 
+            border:1px #3399dd solid;; 
+            background-color:#66aaff; 
+            text-align:center; 
+            cursor: pointer; 
+            color:#fff; 
+            transition: all 0.9s, 
+            color 0.3; 
+        } 
+        
+        .btn:hover{
+            color:#fff;
+            box-shadow:80px 0 0 0 rgba(0,0,0,0.5) inset; 
 
-        .btn {
+        }
+
+
+
+        /* .btn {
             height: 40px;
             width: 10%;
             background-color: #35558a;
-        }
-<<<<<<< HEAD
+            float: block;
+            border: 0px;
+            border-radius: 3%;
+            color: white;
+        } */
 
         .area{
             display: flex;
+            justify-content: space-between;
         }
 
-=======
         {% endblock %}
->>>>>>> f1daf6c55abd14e440a8339bf74efd20a0edf6f1
     </style>
 </head>
 {% block content %}
@@ -258,19 +302,24 @@
                     <form action="{% url 'comment' movie.id %}" method = 'POST' class="txtarea2">
                     {% csrf_token %}
                     <div class="area">
-                        <textarea name="body" class="txt"></textarea>
+                        <input type="text" name="body" class="txt">
                         <button type="submit" class="btn">입력</button>
                     </div>
                     </form>
                 </div>
-                <div>
-
+                <div class="comments">
                     {% for each_comment in comment %}
-                    {{each_comment.body}}
-                    작성자: {{each_comment.user.username}}
+                    <div class="comment">
+                        <div class="content">
+                            {{each_comment.body}}
+                        </div>
+                        <div class="writer">
+                            {{each_comment.user.username}}
+                        </div>    
+                    </div>
                     {% endfor %}
-
                 </div>
+
             </div>
 
         </div>
