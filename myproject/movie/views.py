@@ -21,7 +21,7 @@ def home(request):
     paginator = Paginator(movies, 5) # blogs를 3개씩 쪼갠다
     page = request.GET.get('page') # 해당 정보가 오지 않아도 넘어간다
     paginated_movies = paginator.get_page(page)
-    return render(request, 'home.html', {'movies': paginated_movies})
+    return render(request, 'home.html', {'movies': paginated_movies, 'query': query, 'option': option})
 
 def detail(request, id):
   movie = get_object_or_404(Movie, pk = id)

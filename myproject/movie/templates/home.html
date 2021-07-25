@@ -129,15 +129,15 @@
         <div id="paginator">
         {% if movies.has_previous %}
         <a class="page" href="?page=1">처음</a>
-        <a class="page" href="?page={{movies.previous_page_number}}">이전</a>
+        <a class="page" href="?page={{movies.previous_page_number}}&query={{query}}&option={{option}}">이전</a>
         {% endif %}
         
         <!-- <span>{{movies.number}}</span>
         <span>of</span>
         <span>{{movies.paginator.num_pages}}</span> -->
         {% if movies.has_next %}
-        <a class="page" href="?page={{movies.next_page_number}}">다음</a>
-        <a class="page" href="?page={{movies.paginator.num_pages}}">마지막</a>
+        <a class="page" href="?page={{movies.next_page_number}}&query={{query}}&option={{option}}">다음</a>
+        <a class="page" href="?page={{movies.paginator.num_pages}}&query={{query}}&option={{option}}">마지막</a>
         {% endif %}
         </div>
     {% endblock %}
