@@ -11,10 +11,10 @@ from django.core.paginator import Paginator
 
 def home(request):
     movies = Movie.objects.all()
+
     query = request.GET.get('query')
     if query:
         movies = Movie.objects.filter(title_kor__icontains=query)
-
     paginator = Paginator(movies, 5) # blogs를 3개씩 쪼갠다
     page = request.GET.get('page') # 해당 정보가 오지 않아도 넘어간다
     paginated_movies = paginator.get_page(page)

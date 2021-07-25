@@ -3,7 +3,7 @@
 <head>
 <style>
     #navbar {height: 40px; padding: 15px; padding-bottom: 30px; margin-bottom: 10px; background-color: rgb(240, 240, 240);}
-    #navbar ul li {list-style: none; color: white; float: left;}
+    #navbar ul li {list-style: none; float: left; font-size: 20px;}
     #navbar .nav {text-decoration: none; color:black; display: block; width: 150px; font-size: 20px; margin-left: 20px; font-weight: bold;}
     #search {padding: 10px; font-weight: bold; justify-items: center; font-size: 21px;}
     #searchbox {width: 200px; height: 32px;}
@@ -21,12 +21,13 @@
         border: 1px solid #35558A;}}
     .nav:hover {color: white;}
     #title {text-align: center; font-size: 50px; font-weight: bold;}
+    #net {text-decoration: none; color: black;}
     {% block css_content %} 
     {% endblock %}
 </style>
 </head>
 <body>
-    <p id="title"> NETFLIX</p>
+    <a id="net" href="{% url 'home' %}"> <p id="title"> NETFLIX</p> </a>
     <nav id ='navbar'>
            <ul>
            <li><a class="nav" href="{% url 'home' %}"> HOME </a></li>
@@ -35,6 +36,9 @@
            <li><a class="nav" href="{% url 'logout' %}"> LOGOUT </a></li>
            {% else %}
            <li><a class="nav" href="{% url 'login' %}"> LOGIN </a></li>
+           {% endif %}
+           {% if user.is_authenticated %}
+           <li id="welcome">{{request.user.username}} 님 안녕하세요! </li>
            {% endif %}
         </ul>
     </nav>
