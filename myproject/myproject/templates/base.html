@@ -2,27 +2,50 @@
 <html lang="en">
 <head>
 <style>
-    #navbar {background-color: azure; height: 80px;}
-    #navbar ul li {list-style: none; color: white; float: left; line-height: 30px; vertical-align: middle; text-align: center;}
-    #navbar .nav {text-decoration: none; color:black; display: block; width: 150px;}
-    #search {position: absolute; right: 15%; padding: 20px;}
+    #navbar {height: 40px; padding: 15px; padding-bottom: 30px; margin-bottom: 10px; background-color: rgb(240, 240, 240);}
+    #navbar ul li {list-style: none; color: white; float: left;}
+    #navbar .nav {text-decoration: none; color:black; display: block; width: 150px; font-size: 20px; margin-left: 20px; font-weight: bold;}
+    #search {padding: 10px; font-weight: bold; justify-items: center; font-size: 21px;}
+    #searchbox {width: 200px; height: 32px;}
+    #searchdiv {position: absolute; left: 1300px; margin-bottom: 100px;}
+    #searchdiv #search button { display: inline-block;
+        padding: 0.7em 1em;
+        border-radius: 4px;
+        color: white;
+        background-color: #35558A;
+        font-weight: bold;  
+        letter-spacing: 2px;
+        text-decoration: none;
+        background-position: 1% 50%;
+        background-size: 400% 300%;
+        border: 1px solid #35558A;}}
+    .nav:hover {color: white;}
+    #title {text-align: center; font-size: 50px; font-weight: bold;}
+    {% block css_content %} 
+    {% endblock %}
 </style>
 </head>
 <body>
+    <p id="title"> NETFLIX</p>
     <nav id ='navbar'>
            <ul>
            <li><a class="nav" href="{% url 'home' %}"> HOME </a></li>
-           <li><a class="nav" href="{% url 'signup' %}"> 회원가입 </a>
+           <li><a class="nav" href="{% url 'signup' %}"> SIGNUP </a>
            {% if user.is_authenticated %}
-           <li><a class="nav" href=""> 로그아웃 </a></li>
+           <li><a class="nav" href="{% url 'logout' %}"> LOGOUT </a></li>
            {% else %}
-           <li><a class="nav" href="{% url 'login' %}"> 로그인 </a></li>
+           <li><a class="nav" href="{% url 'login' %}"> LOGIN </a></li>
            {% endif %}
         </ul>
-        <form id="search" action="{% url 'home' %}">
-            SEARCH <input type="text" name="query">
-          </form>
     </nav>
+    
+
+    <div id = "searchdiv">
+    <form id="search" action="{% url 'home' %}">
+        SEARCH <br> <input id="searchbox" type="text" name="query">
+        <button type="submit"> 검색 </button>
+      </form> <br><br> 
+    </div>
     {% block content %}
     {% endblock %}
 </body>

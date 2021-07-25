@@ -1,39 +1,65 @@
 {% extends 'base.html' %}
-    {% block content %}
-      
-    <header>
-        <style>
-            #title {text-align: center;}
-            #poster {float: left; padding: 50px; margin:0 auto; }
-            .paginator {background-color: beige; width: 300px;}
 
-        </style>
-    </header>
-      <body>
-        <h1 id="title">MOVIE</h1>
-    {% for movie in movies %}
+<style>
+    {% block css_content %}
+    /* h1 {color: red;} */
+    body{
+    font-family: 나눔스퀘어, 나눔바른고딕;}
+    #poster {float: left; padding: 35px; text-align: center; margin-top: 80px; }
+    #paginator { display:block; margin: 0px auto; text-align: center;}
+    #contents {display:flex; justify-content:center;}
+    #movieinfo, #movie_title {width: 220px;}
+    #movieinfo {font-size: 18px; }
+    #movie_title {font-weight: bold; font-size: 20px; }
+    .page {
+        display: inline-block;
+        padding: 0.7em 1em;
+        border-radius: 12px;
+        color: #35558A;
+        font-weight: bold;  
+        letter-spacing: 2px;
+        text-decoration: none;
+        background-position: 1% 50%;
+        background-size: 400% 300%;
+        border: 1px solid #35558A;}
+
+    .page:hover {color: white; background-color:#35558A;}
+    {% endblock %}
+</style>
+
+
+    {% block content %}
+        <div id="contents">
+        
+        {% for movie in movies %}
         <div id="poster">
-        <img src = "{{movie.poster_url}}" width="150px">
+        <a href = "{% url 'detail' movie.id %}"> <img src = "{{movie.poster_url}}" width="230px"> </a>
+        <br> <br>
+        <p id="movieinfo">
+        {{movie.release_date}}
         <br>
+        {{movie.genre}}
+        <br>
+        </p>
+        <p id="movie_title">
         {{movie.title_kor}}
         </div>
-    {% endfor %}
+        </p>
+        {% endfor %}
+        </div>
     
-    
-    <div>
+        <div id="paginator">
         {% if movies.has_previous %}
-        <a href="?page=1">처음</a>
-        <a href="?page={{movies.previous_page_number}}">이전</a>
+        <a class="page" href="?page=1">처음</a>
+        <a class="page" href="?page={{movies.previous_page_number}}">이전</a>
         {% endif %}
         
-        <span>{{movies.number}}</span>
+        <!-- <span>{{movies.number}}</span>
         <span>of</span>
-        <span>{{movies.paginator.num_pages}}</span>
+        <span>{{movies.paginator.num_pages}}</span> -->
         {% if movies.has_next %}
-        <a href="?page={{movies.next_page_number}}">다음</a>
-        <a href="?page={{movies.paginator.num_pages}}">마지막</a>
+        <a class="page" href="?page={{movies.next_page_number}}">다음</a>
+        <a class="page" href="?page={{movies.paginator.num_pages}}">마지막</a>
         {% endif %}
-      </div>
-    </body>
-      
+        </div>
     {% endblock %}
