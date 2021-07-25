@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
 
-    </style>
-</head>
-<body>
-<h1>회원가입 페이지</h1>
-<form action="{% url 'signup' %}" method="POST">
+<form action="{% url 'signup' %}" method="POST" class="form" style="position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);">
   {% csrf_token %}
-  {{form.as_p}}
-  <button type="submit">회원가입</button>
+  {% bootstrap_form form %}
+
+  {% bootstrap_button button_type="submit" size="lg" style="background-color:#6A8CC3; border-color: #6A8CC3; width:49%; display: inline-block; " content="OK" %}
+  {% bootstrap_button button_type="reset" size="lg" style="background-color:#6A8CC3; border-color: #6A8CC3; width:49%; display: inline-block;" content="Cancel" %}
+
 </form>
-
-</body>
-</html>
-
