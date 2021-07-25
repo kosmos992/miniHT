@@ -128,7 +128,7 @@
     
         <div id="paginator">
         {% if movies.has_previous %}
-        <a class="page" href="?page=1">처음</a>
+        <a class="page" href="?page=1&query={{query}}&option{{option}}">처음</a>
         <a class="page" href="?page={{movies.previous_page_number}}&query={{query}}&option={{option}}">이전</a>
         {% endif %}
         
